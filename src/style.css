@@ -1,0 +1,10 @@
+h1, p {
+  font-family: Lato;
+}
+.main {
+  text-align: center;
+  border: 1px solid red;
+}
+.heading {
+  color: rgb(30, 80, 51);
+}

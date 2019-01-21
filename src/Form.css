@@ -1,0 +1,17 @@
+
+.input {
+    height: 40px;
+    width: 200px;
+    border: 1px solid blue;
+}
+.addButton {
+    height: 40px;
+    width: 200px;
+    border-radius: 5px;
+    background-color: rgb(147, 147, 180);
+    color: white;
+    font-size: 20px;
+}
+.form {
+    border: 1px solid black;
+}

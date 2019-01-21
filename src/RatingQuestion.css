@@ -1,0 +1,11 @@
+.deleteButton {
+    background-color: rgb(116, 66, 116);
+    height: 40px;
+    width: 200px;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+}
+.ratingQuestion {
+    border: 1px solid blue;
+}
