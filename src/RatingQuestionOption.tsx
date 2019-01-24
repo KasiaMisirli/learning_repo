@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './RatingQuestionOption.css'
+import styles from './RatingQuestionOption.module.css'
 
 interface RatingQuestionOptionProps {
   optionSelected(value: string): void
@@ -14,9 +14,9 @@ class RatingQuestionOption extends Component<RatingQuestionOptionProps> {
 
   render(){
     return(
-      <div className="ratingQuestionOption">
-        <input type="radio" name="question" value={this.props.value} onChange={this.optionSelected} /> {this.props.value} <br /> 
-        {/* options */}
+      <div className={styles.ratingQuestionOption}>
+        <input type="radio" name="question" value={this.props.value} 
+        onChange={this.optionSelected} /> {this.props.value} <br /> 
       </div>
     )
   }

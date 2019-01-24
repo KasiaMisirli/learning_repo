@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import RatingQuestionOption from './RatingQuestionOption';
-import './RatingQuestion.css'
+import styles from './RatingQuestion.module.css'
 import axios from 'axios'
 import EditQuestion from './EditQuestion'
 
@@ -17,12 +17,14 @@ interface RatingQuestionProps {
 interface RatingQuestionState {
   selectedOption: string | null,
   editingTitle: boolean,
+  title: string,
 }
 
 class RatingQuestion extends Component<RatingQuestionProps, RatingQuestionState> {
   state = {
     selectedOption: null,
     editingTitle: false,
+    title: this.props.title
   }
 
   optionSelected = (option: string) => {
@@ -34,27 +36,27 @@ class RatingQuestion extends Component<RatingQuestionProps, RatingQuestionState>
     })
     .then( (response)=> console.log(response));
   }
-  confirmDelete = () => {
-    if (window.confirm("Do you want to delete this question?")){
-      this.props.deleteQuestion(this.props.id);
-    } 
-  }
-  // confirmEdit = () => {
-  //   if (window.confirm("Do you want to edit this question?")){
-  //     this.props.editQuestion(this.props.id);
-  //   } 
-  // }
 
+  confirmDelete = () => {
+    this.props.deleteQuestion(this.props.id);
+  } 
 
   beginEditing = () => {
     this.setState({ editingTitle: true })
     console.log("editing")
   }
-  
+
+  changeQuestion = (title: string) => {
+    axios.put(`http://localhost:4567/ratingQuestions/${this.props.id}`,{ title: title })
+    .then((response) => this.setState({ title: title, editingTitle: false }) 
+    );  
+  }
+
   render(){
     return(
-      <div className="ratingQuestion">
-        <h3 >{this.props.title} <br/><a href={this.props.link}>More info</a> <br/> <button className="deleteButton" onClick={this.confirmDelete}>Delete Question</button></h3>
+      <div className={styles.ratingQuestion}>
+        <h3 >{this.state.title} <br/><a href={this.props.link}>More info</a> <br/> <button 
+        className={styles.deleteButton} onClick={this.confirmDelete}>Delete Question</button></h3>
         <h3><button onClick={this.beginEditing}>Edit Question</button></h3>
         {this.renderEditForm()}
         <form>
@@ -65,14 +67,15 @@ class RatingQuestion extends Component<RatingQuestionProps, RatingQuestionState>
     )
   }
 
-  renderRatingValues(){
+  renderRatingValues = () => {
     let values = ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"]
-    return values.map((value, i) => <RatingQuestionOption value={value} key={i}  optionSelected={this.optionSelected} />)
+    return values.map((value, i) => <RatingQuestionOption value={value} key={i}  
+    optionSelected={this.optionSelected} />)
   }
 
-  renderEditForm() {
+  renderEditForm = () => {
     if (this.state.editingTitle) {
-      return <EditQuestion />
+      return <EditQuestion id={this.props.id} changeQuestion={this.changeQuestion} />
     }
   }
 }

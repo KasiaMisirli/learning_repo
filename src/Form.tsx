@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { Question } from './QuestionTypes';
 import axios from 'axios'
+import styles from './Form.module.css'
 
 interface FormProps {
-  // This defines a new type called formprops :)
-  addQuestion(question: Question): void
+  addQuestion(): void
 }
 
 interface FormState {
@@ -22,41 +22,37 @@ class Form extends Component<FormProps, FormState>{
     value: "",
     link: ""
  }
-  
 
   handleChange = (bob: React.FormEvent) => {
     this.setState({value: (bob.target as HTMLInputElement).value}); 
   }
   
   handleSubmit = (event: React.FormEvent) => {
-    if (window.confirm("Are you sure you want to add " + this.state.value)){
-        event.preventDefault();
-        
-        axios.post("http://localhost:/ratingQuestions", {
-          title: this.state.value,
-          link: this.state.link
-        })
-          .then( (response: RatingQuestionResponse) => this.props.addQuestion(response.data))
-        this.setState({
-          value: "",
-          link: ""
-        })
-    }
-    
+    event.preventDefault();
+    axios.post("http://localhost:4567/ratingQuestions", {
+      title: this.state.value,
+      link: this.state.link
+    })
+      .then( (response: RatingQuestionResponse) => this.props.addQuestion())
+      this.setState({
+        value: "",
+        link: ""
+    })
   }    
+
   handleAddLink = (l: React.FormEvent) => {
     this.setState({link: (l.target as HTMLInputElement).value})
   }
   
-
   render(){
     return(
       <div>
-        <form className="form" onSubmit={this.handleSubmit}>
-          <input className="input" placeholder="type in the question" type="text" value={this.state.value} onChange={this.handleChange}/>
-          <input placeholder="type in the link" type="text" value={this.state.link} onChange={this.handleAddLink}/>
-          <button className="addButton" type="submit" value="submit">Add</button>
-          {this.state.value}
+        <form className={styles.form} onSubmit={this.handleSubmit}>
+          <input className={styles.input} placeholder="type in the question" type="text" 
+          value={this.state.value} onChange={this.handleChange}/>
+          <input className={styles.input} placeholder="type in the link" type="text" 
+          value={this.state.link} onChange={this.handleAddLink}/>
+          <button className={styles.addButton} type="submit" value="submit">Add</button>
         </form>
       </div>
     );
