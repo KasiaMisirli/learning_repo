@@ -3,6 +3,7 @@ import RatingQuestionOption from './RatingQuestionOption';
 import styles from './RatingQuestion.module.css'
 import axios from 'axios'
 import EditQuestion from './EditQuestion'
+import { Question } from './QuestionTypes';
 
 
 interface RatingQuestionProps {
@@ -18,20 +19,25 @@ interface RatingQuestionState {
   selectedOption: string | null,
   editingTitle: boolean,
   title: string,
+  data: Question[]
 }
 
+interface SingleQuestion {
+  data: Question[]
+}
 class RatingQuestion extends Component<RatingQuestionProps, RatingQuestionState> {
   state = {
     selectedOption: null,
     editingTitle: false,
-    title: this.props.title
+    title: this.props.title,
+    data: []
   }
 
   optionSelected = (option: string) => {
     this.setState({ 
       selectedOption: option,
     });
-    axios.patch(`http://localhost:3000/ratingQuestions/${this.props.id}`, {
+    axios.patch(`http://localhost:4567/ratingQuestions/${this.props.id}`, {
       answer: option
     })
     .then( (response)=> console.log(response));
@@ -52,9 +58,15 @@ class RatingQuestion extends Component<RatingQuestionProps, RatingQuestionState>
     );  
   }
 
+  singleQuestion = () => {
+    axios.get(`http://localhost:4567/ratingQuestions/${this.props.id}`)
+    .then( (response)=> console.log(response));
+  }
+
   render(){
     return(
       <div className={styles.ratingQuestion}>
+        <button onClick={this.singleQuestion} >Single question view</button>
         <h3 >{this.state.title} <br/><a href={this.props.link}>More info</a> <br/> <button 
         className={styles.deleteButton} onClick={this.confirmDelete}>Delete Question</button></h3>
         <h3><button onClick={this.beginEditing}>Edit Question</button></h3>
