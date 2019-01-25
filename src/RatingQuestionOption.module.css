@@ -1,4 +1,7 @@
 .ratingQuestionOption {
-    border: 1px solid pink;
     border-radius: 10px;
+    text-align: left;
+    margin-left: 45%;
+    margin-top: 2%;
 }
+

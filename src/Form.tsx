@@ -48,11 +48,11 @@ class Form extends Component<FormProps, FormState>{
     return(
       <div>
         <form className={styles.form} onSubmit={this.handleSubmit}>
-          <input className={styles.input} placeholder="type in the question" type="text" 
+          <input className={styles.input} placeholder="  type in the question" type="text" 
           value={this.state.value} onChange={this.handleChange}/>
-          <input className={styles.input} placeholder="type in the link" type="text" 
+          <input className={styles.input} placeholder="  paste the link" type="text" 
           value={this.state.link} onChange={this.handleAddLink}/>
-          <button className={styles.addButton} type="submit" value="submit">Add</button>
+          <button className={styles.addButton} type="submit" value="submit">Add new question</button>
         </form>
       </div>
     );

@@ -1,10 +1,23 @@
+*{
+  margin:0;
+  padding:0;
+  border:0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  }
 h1, p {
   font-family: Lato;
 }
 .main {
   text-align: center;
-  border: 1px solid red;
+  background-color: rgb(186, 218, 186);
 }
 .heading {
-  color: rgb(30, 80, 51);
+  padding: 50px;
+  color: rgb(238, 77, 8);
+  font-size: 50px
+}
+.addHeading {
+  padding: 50px;
+  color: rgb(238, 77, 8);
+  font-size: 30px;
 }

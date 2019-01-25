@@ -1,11 +1,45 @@
 .deleteButton {
-    background-color: rgb(116, 66, 116);
+    background-color: rgb(223, 196, 163);
     height: 40px;
     width: 200px;
     border-radius: 5px;
-    color: white;
+    color: rgb(247, 98, 6);
     font-size: 20px;
+    margin:5px;
 }
 .ratingQuestion {
-    border: 1px solid blue;
+    background-color: rgb(70, 129, 70);
+    margin: 10px 400px;
+    border-radius: 10px;
+}
+.showInConsole {
+    height: 20px;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 3px;
+    color: rgb(247, 98, 6);
+    background-color: rgb(223, 196, 163);
+
+}
+.editQuestion {
+    height: 25px;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+    background-color: rgb(223, 196, 163);
+    color: rgb(247, 98, 6);
+}
+.question {
+    font-size: 30px;
+    color: rgb(247, 98, 6);
+}
+.linkMoreInfo {
+    color: black;
+    margin: 5px;
+}
+.answer {
+    font-size: 30px;
+    margin: 20px;
+    color: rgb(247, 98, 6);
+
 }

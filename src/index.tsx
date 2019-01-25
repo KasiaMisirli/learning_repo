@@ -48,7 +48,7 @@ componentDidMount = () => {
       <div className={styles.main}>
         <h1 className={styles.heading}>Survey Yourself !!!</h1>
         {this.renderRatingQuestions()}
-        <h3 className={styles.heading}>Add another question?</h3>
+        <h3 className={styles.addHeading}>Add another question?</h3>
 
         <Form addQuestion={this.addQuestion}/>
       </div>

@@ -66,22 +66,25 @@ class RatingQuestion extends Component<RatingQuestionProps, RatingQuestionState>
   render(){
     return(
       <div className={styles.ratingQuestion}>
-        <button onClick={this.singleQuestion} >Single question view</button>
-        <h3 >{this.state.title} <br/><a href={this.props.link}>More info</a> <br/> <button 
-        className={styles.deleteButton} onClick={this.confirmDelete}>Delete Question</button></h3>
-        <h3><button onClick={this.beginEditing}>Edit Question</button></h3>
+        <button onClick={this.singleQuestion} className={styles.showInConsole}>Show data in console</button>
+        <h3 className={styles.question}>{this.state.title}</h3><br/>
+        <a href={this.props.link} className={styles.linkMoreInfo}>More info</a> <br/> 
         {this.renderEditForm()}
-        <form>
+        <form >
           {this.renderRatingValues()}
         </form>
-        <p> Answer: {this.state.selectedOption}</p>
+        <p className={styles.answer}> Answer: {this.state.selectedOption}</p>
+        <button 
+        className={styles.deleteButton} onClick={this.confirmDelete}>Delete Question</button>
+        
+        <h3><button onClick={this.beginEditing} className={styles.editQuestion}>Edit Question</button></h3>
       </div>
     )
   }
 
   renderRatingValues = () => {
     let values = ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"]
-    return values.map((value, i) => <RatingQuestionOption value={value} key={i}  
+    return values.map((value, i) => <RatingQuestionOption  value={value} key={i}  
     optionSelected={this.optionSelected} />)
   }
 
